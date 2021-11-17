@@ -1,0 +1,12 @@
+footer {
+  position: sticky;
+  bottom: 0;
+}
+
+span {
+  line-height: 1.5 !important;
+}
+
+#content:last-child {
+  margin-bottom: 1rem;
+}
