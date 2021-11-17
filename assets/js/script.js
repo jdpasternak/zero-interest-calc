@@ -156,7 +156,6 @@ var editCard = function (event) {
   inputCardAmountDueEl = document.createElement("input");
   inputCardAmountDueEl.type = "number";
   inputCardAmountDueEl.className = "amountDueInput";
-  console.log(amountDue);
   inputCardAmountDueEl.value = amountDue;
   amountDueEl.parentNode.replaceChild(inputCardAmountDueEl, amountDueEl);
 
@@ -199,7 +198,6 @@ var saveCard = function (cardId, cardName, amountDue, expiration) {
   cardName = cardNameInputEl.value;
   amountDue = amountDueInputEl.value;
   expiration = expirationInputEl.value;
-  console.log(expiration);
 
   var cardNameEl = document.createElement("h3");
   cardNameEl.className = "cardName";
@@ -230,7 +228,6 @@ var saveCard = function (cardId, cardName, amountDue, expiration) {
 
   cards.forEach((c) => {
     if (c.id === parseInt(cardId)) {
-      console.log(c);
       c.cardName = cardName;
       c.amountDue = amountDue;
       c.expiration = convertTextDateToDateTime(expiration).toLocaleString();
@@ -250,7 +247,6 @@ var deleteCard = function (event) {
 
   cards.forEach((c) => {
     if (c.id !== parseInt(cardId)) {
-      console.log(cardId, c.id);
       cardsKept.push(c);
     }
   });
@@ -267,9 +263,7 @@ var saveData = () => {
 
 var loadData = () => {
   var savedData = JSON.parse(localStorage.getItem("cards"));
-  console.log(savedData);
   savedData.forEach((c) => {
-    console.log(c.expiration);
     addCard(c.cardName, c.amountDue, c.expiration);
   });
   calcTotalMonthlyPayment();
