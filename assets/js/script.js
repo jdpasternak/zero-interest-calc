@@ -263,6 +263,9 @@ var saveData = () => {
 
 var loadData = () => {
   var savedData = JSON.parse(localStorage.getItem("cards"));
+  if (!savedData) {
+    return false;
+  }
   savedData.forEach((c) => {
     addCard(c.cardName, c.amountDue, c.expiration);
   });
