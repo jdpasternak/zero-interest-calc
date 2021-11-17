@@ -10,6 +10,8 @@ A tool for tracking zero interest credit cards.
 
 - Provides total monthly payments over all credit cards to pay off before promotional APR expires.
 
+- Data persists as it's saved in the browser's local storage.
+
 ## Screenshot and Demo
 
 ![A screenshot of the zero percent interest calculator app](./assets/images/screenshot.PNG)
