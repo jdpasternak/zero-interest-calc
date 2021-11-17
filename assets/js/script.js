@@ -129,7 +129,6 @@ var addCard = function (cardName, amountDue, expiration) {
   saveData();
 };
 
-// TODO: populate date input
 var editCard = function (event) {
   var cardId = event.target.dataset.cardid;
 
@@ -187,7 +186,6 @@ var saveCardHandler = function (event) {
   saveCard(cardId, cardNameInput, amountDueInput, expirationInput);
 };
 
-// TODO: data validation on inputs
 var saveCard = function (cardId, cardName, amountDue, expiration) {
   var card = document.getElementById(cardId);
 
@@ -239,7 +237,6 @@ var saveCard = function (cardId, cardName, amountDue, expiration) {
   calcTotalMonthlyPayment();
 };
 
-// TODO: add a confirmation before deletion
 var deleteCard = function (event) {
   var cardId = event.target.dataset.cardid;
   document.getElementById(cardId).remove();
