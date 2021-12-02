@@ -182,8 +182,6 @@ var editCard = function (event) {
 var saveCardHandler = function (event) {
   var cardId = event.target.dataset.cardid;
   card = document.getElementById(cardId);
-  event.target.hidden = true;
-  card.querySelector(".edit-btn").hidden = false;
 
   var cardNameInputEl = card.querySelector(".cardNameInput");
   var amountDueInputEl = card.querySelector(".amountDueInput");
@@ -193,7 +191,27 @@ var saveCardHandler = function (event) {
   amountDueInput = amountDueInputEl.value;
   expirationInput = expirationInputEl.value;
 
-  saveCard(cardId, cardNameInput, amountDueInput, expirationInput);
+  if (
+    cardNameInput === "" ||
+    amountDueInput === "" ||
+    parseFloat(amountDueInput) <= 0 ||
+    expirationInput === ""
+  ) {
+    if (!card.querySelector(".alert")) {
+      var invalidAlert = document.createElement("div");
+      invalidAlert.className = "alert alert-danger";
+      invalidAlert.innerHTML = "Invalid input!";
+      card.querySelector(".card-text").appendChild(invalidAlert);
+    }
+    return false;
+  } else {
+    if (card.querySelector(".alert")) {
+      card.querySelector(".alert").remove();
+    }
+    saveCard(cardId, cardNameInput, amountDueInput, expirationInput);
+  }
+  event.target.hidden = true;
+  card.querySelector(".edit-btn").hidden = false;
 };
 
 var saveCard = function (cardId, cardName, amountDue, expiration) {
