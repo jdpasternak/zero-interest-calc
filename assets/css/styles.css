@@ -10,3 +10,7 @@ span {
 #content:last-child {
   margin-bottom: 1rem;
 }
+
+#explainer {
+  cursor: pointer;
+}
