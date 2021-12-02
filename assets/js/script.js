@@ -4,6 +4,9 @@ var confirmDeleteModalEl = document.getElementById("confirm-delete-modal");
 var confirmDeleteModal = new bootstrap.Modal(confirmDeleteModalEl, {
   keyboard: false,
 });
+var explainerModalEl = document.getElementById("explainer-modal");
+var explainerModal = new bootstrap.Modal(explainerModalEl, { keyboard: false });
+
 var firstInput = document.querySelector("#add-entry-modal input");
 
 addEntryModalEl.addEventListener("shown.bs.modal", function () {
@@ -291,6 +294,10 @@ var loadData = () => {
   calcTotalMonthlyPayment();
 };
 
+var expalinerHandler = (evt) => {
+  explainerModal.toggle();
+};
+
 // Utility Functions
 // =================
 var convertTextDateToDateTime = function (textDate) {
@@ -345,5 +352,8 @@ var calcTotalMonthlyPayment = function () {
 document
   .querySelector("#submitEntry")
   .addEventListener("click", addCardHandler);
+document
+  .getElementById("explainer")
+  .addEventListener("click", expalinerHandler);
 
 loadData();
