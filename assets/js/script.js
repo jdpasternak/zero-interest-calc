@@ -258,9 +258,19 @@ var deleteCard = function (cardId) {
 };
 
 var confirmDelete = (evt) => {
+  var cardId = evt.target.dataset.cardid;
   confirmDeleteModal.toggle();
-  // var cardId = evt.target.dataset.cardid;
-  // deleteCard(cardId);
+  var confirmDeleteBtn = document.getElementById("confirmDeleteBtn");
+  confirmDeleteBtn.setAttribute("data-cardid", cardId);
+  confirmDeleteModalEl.addEventListener("click", (evt) => {
+    if (
+      evt.target === confirmDeleteBtn ||
+      evt.target === confirmDeleteBtn.querySelector("span")
+    ) {
+      deleteCard(cardId);
+      confirmDeleteModal.toggle();
+    }
+  });
 };
 
 var saveData = () => {
