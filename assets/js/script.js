@@ -14,6 +14,9 @@ addEntryModalEl.addEventListener("hidden.bs.modal", () => {
   if (addEntryModalEl.querySelector(".alert-danger")) {
     addEntryModalEl.querySelector(".alert-danger").remove();
   }
+  addEntryModalEl.querySelectorAll("input").forEach((e) => {
+    e.value = "";
+  });
 });
 
 var DateTime = luxon.DateTime;
