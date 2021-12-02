@@ -13,4 +13,10 @@ span {
 
 #explainer {
   cursor: pointer;
+  color: var(--bs-primary);
+  transition: all 0.15s ease-in-out;
+}
+
+#explainer:hover {
+  color: #0b5ed7;
 }
