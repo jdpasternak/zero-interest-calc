@@ -182,8 +182,6 @@ var editCard = function (event) {
 var saveCardHandler = function (event) {
   var cardId = event.target.dataset.cardid;
   card = document.getElementById(cardId);
-  event.target.hidden = true;
-  card.querySelector(".edit-btn").hidden = false;
 
   var cardNameInputEl = card.querySelector(".cardNameInput");
   var amountDueInputEl = card.querySelector(".amountDueInput");
@@ -193,7 +191,23 @@ var saveCardHandler = function (event) {
   amountDueInput = amountDueInputEl.value;
   expirationInput = expirationInputEl.value;
 
-  saveCard(cardId, cardNameInput, amountDueInput, expirationInput);
+  console.log(cardNameInput, amountDueInput, expirationInput);
+
+  if (
+    cardNameInput === "" ||
+    amountDueInput === "" ||
+    parseFloat(amountDueInput) <= 0 ||
+    expirationInput === ""
+  ) {
+    console.log("card NOT saved");
+    return false;
+  } else {
+    console.log(parseFloat(amountDueInput));
+    console.log("card saved");
+    saveCard(cardId, cardNameInput, amountDueInput, expirationInput);
+  }
+  event.target.hidden = true;
+  card.querySelector(".edit-btn").hidden = false;
 };
 
 var saveCard = function (cardId, cardName, amountDue, expiration) {
