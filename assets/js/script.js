@@ -1,14 +1,18 @@
-var modalEl = document.getElementById("add-entry-modal");
-var modal = new bootstrap.Modal(modalEl, { keyboard: false });
+var addEntryModalEl = document.getElementById("add-entry-modal");
+var addEntryModal = new bootstrap.Modal(addEntryModalEl, { keyboard: false });
+var confirmDeleteModalEl = document.getElementById("confirm-delete-modal");
+var confirmDeleteModal = new bootstrap.Modal(confirmDeleteModalEl, {
+  keyboard: false,
+});
 var firstInput = document.querySelector("#add-entry-modal input");
 
-modalEl.addEventListener("shown.bs.modal", function () {
+addEntryModalEl.addEventListener("shown.bs.modal", function () {
   firstInput.focus();
 });
 
-modalEl.addEventListener("hidden.bs.modal", () => {
-  if (modalEl.querySelector(".alert-danger")) {
-    modalEl.querySelector(".alert-danger").remove();
+addEntryModalEl.addEventListener("hidden.bs.modal", () => {
+  if (addEntryModalEl.querySelector(".alert-danger")) {
+    addEntryModalEl.querySelector(".alert-danger").remove();
   }
 });
 
@@ -34,8 +38,8 @@ var addCardHandler = function (event) {
   var newExpDate = newExpDateEl.value;
 
   if (newCardName !== "" && newAmountDue > 0 && newExpDate) {
-    if (modalEl.querySelector(".alert-danger")) {
-      modalEl.querySelector(".alert-danger").remove();
+    if (addEntryModalEl.querySelector(".alert-danger")) {
+      addEntryModalEl.querySelector(".alert-danger").remove();
     }
     // clear the modal form values
     newCardNameEl.value = "";
@@ -45,16 +49,16 @@ var addCardHandler = function (event) {
     // Add the card
     addCard(newCardName, newAmountDue, newExpDate);
 
-    modal.toggle();
+    addEntryModal.toggle();
   } else {
     // display a danger alert within the modal
-    if (modalEl.querySelector(".alert-danger")) {
+    if (addEntryModalEl.querySelector(".alert-danger")) {
       return false;
     }
     var dangerAlert = document.createElement("div");
     dangerAlert.className = "alert alert-danger";
     dangerAlert.innerHTML = "Invalid input!";
-    modalEl.querySelector(".modal-footer").prepend(dangerAlert);
+    addEntryModalEl.querySelector(".modal-footer").prepend(dangerAlert);
     return false;
   }
 };
@@ -117,7 +121,7 @@ var addCard = function (cardName, amountDue, expiration) {
   document
     .getElementById(parseInt(cardCounter))
     .querySelector(".delete-btn")
-    .addEventListener("click", deleteCard);
+    .addEventListener("click", confirmDelete);
 
   document
     .getElementById(parseInt(cardCounter))
@@ -237,8 +241,7 @@ var saveCard = function (cardId, cardName, amountDue, expiration) {
   calcTotalMonthlyPayment();
 };
 
-var deleteCard = function (event) {
-  var cardId = event.target.dataset.cardid;
+var deleteCard = function (cardId) {
   document.getElementById(cardId).remove();
   var cardsKept = [];
 
@@ -252,6 +255,12 @@ var deleteCard = function (event) {
   saveData();
 
   calcTotalMonthlyPayment();
+};
+
+var confirmDelete = (evt) => {
+  confirmDeleteModal.toggle();
+  // var cardId = evt.target.dataset.cardid;
+  // deleteCard(cardId);
 };
 
 var saveData = () => {

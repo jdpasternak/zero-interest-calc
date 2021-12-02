@@ -92,6 +92,39 @@
       </div>
     </div>
 
+    <!-- Confirm Delete Modal -->
+    <div class="modal fade" id="confirm-delete-modal" data-bs-keyboard="false">
+      <div class="modal-dialog modal-dialog-centered" tabindex="-1">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="confirmDeleteLabel">
+              Delete this card?
+            </h5>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+            ></button>
+          </div>
+          <div class="modal-body">
+            <p>Are you sure you want to delete this card?</p>
+          </div>
+          <div class="modal-footer">
+            <button
+              id="submit-new-entry"
+              class="btn btn-danger"
+              data-bs-dismiss="modal"
+            >
+              <span class="material-icons-outlined"> cancel </span>
+            </button>
+            <button id="confirmDelete" class="btn btn-primary">
+              <span class="material-icons-outlined"> check </span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <!-- Footer -->
     <footer class="footer mt-auto py-3 bg-light">
       <div class="container">
