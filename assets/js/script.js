@@ -191,19 +191,23 @@ var saveCardHandler = function (event) {
   amountDueInput = amountDueInputEl.value;
   expirationInput = expirationInputEl.value;
 
-  console.log(cardNameInput, amountDueInput, expirationInput);
-
   if (
     cardNameInput === "" ||
     amountDueInput === "" ||
     parseFloat(amountDueInput) <= 0 ||
     expirationInput === ""
   ) {
-    console.log("card NOT saved");
+    if (!card.querySelector(".alert")) {
+      var invalidAlert = document.createElement("div");
+      invalidAlert.className = "alert alert-danger";
+      invalidAlert.innerHTML = "Invalid input!";
+      card.querySelector(".card-text").appendChild(invalidAlert);
+    }
     return false;
   } else {
-    console.log(parseFloat(amountDueInput));
-    console.log("card saved");
+    if (card.querySelector(".alert")) {
+      card.querySelector(".alert").remove();
+    }
     saveCard(cardId, cardNameInput, amountDueInput, expirationInput);
   }
   event.target.hidden = true;
